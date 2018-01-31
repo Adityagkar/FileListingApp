@@ -51,47 +51,10 @@ public class FileListingApp {
 
     
     public static void main(String[] args) throws IOException {
-        
       
-     
-        
-       /*Step 1 : 
-            Taking the Text File's URL which contains the SOURCE URL where we have to lists all 
-            the files (even those in directories, if any)
-       */
-       
-        String user_input=JOptionPane.showInputDialog("Enter the File's URL (which contains the URL for showing the Listing");
-        
-        
-        File fobject=new File(user_input);
-       char[] ch=new  char[user_input.length()];
-        
-                try {
-                        FileReader in_stream=new FileReader(fobject);
-                        int c;
-                        int i=0;
-                      
-        //Extracting the path contained in given Text File using FileReader
-                    while((c=in_stream.read())!=-1){
-                        
-                         ch[i]=(char)c;
-                         //stored each character extracted in an character array
-                         i++;
-                    }
-                }catch (FileNotFoundException ex){
-                    
-                        System.out.print("File not Found!!");  
-                        
-                }
-        
-        //converted the character array to a String
-        String path= new String(ch);
-
-        
-        File input = new File(path);
+        File input = new File("C:\\Users\\Aditya\\Desktop\\TEST");
         File output = new File("C:\\Users\\Aditya\\Documents\\NetBeansProjects\\FileListingApp\\OutputNew.txt");
         
-        System.out.println(path);
         
         if(input.isFile()){
             System.out.println("File name: "+input.getName()+" and Path :"+input.getPath());
