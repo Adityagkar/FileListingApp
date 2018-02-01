@@ -65,27 +65,27 @@ public class FileListingApp {
             
         // say the array is lists
            
-        //for each file/folder stored in array lists[]
-        for(int i=0;i<lists.length;i++){
-               
-                //check if it's a File or Directory
-                if(lists[i].isFile()){  // Also, a break condition for Recursion.
-                    //if it's a file write it's path to an ArrayList
-                    l.add(lists[i].getAbsoluteFile());
-                    //System.out.println("File name: "+lists[i].getName()+" and Path :"+lists[i].getPath());
-                    size++;
-                     
-                   
-                }
-                else{
-                    // if it's not a file then initialise File handler "input" with it's path  
-                    //Recall the function Lister() by passing the updated File Handler
-                    File temp=new File(lists[i].getPath());
-                    Lister(temp); //Recursive call
-                }
-                   
-                    
-            }
+                //for each file/folder stored in array lists[]
+                for(int i=0;i<lists.length;i++){
+
+                        //check if it's a File or Directory
+                        if(lists[i].isFile()){  // Also, a break condition for Recursion.
+                            //if it's a file write it's path to an ArrayList
+                            l.add(lists[i].getAbsoluteFile());
+                            //System.out.println("File name: "+lists[i].getName()+" and Path :"+lists[i].getPath());
+                            size++;
+
+
+                        }
+                        else{
+                            // if it's not a file then initialise File handler "input" with it's path  
+                            //Recall the function Lister() by passing the updated File Handler
+                            File temp=new File(lists[i].getPath());
+                            Lister(temp); //Recursive call
+                        }
+
+
+                    }
             
         }
        else{
@@ -93,7 +93,7 @@ public class FileListingApp {
             l.add(lists[0].getAbsoluteFile());
        }
            
-    //This is for testing whether the file paths are been written in ArrayList or not
+            //This is for testing whether the file paths are been written in ArrayList or not
             for(int i=0;i<size;i++)
                  System.out.println(l.get(i));
     
