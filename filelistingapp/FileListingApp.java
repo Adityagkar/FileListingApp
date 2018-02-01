@@ -24,7 +24,7 @@ public class FileListingApp {
                 
                 if(lists[i].isFile()){
                   
-                    l.add("File name : "+lists[i].getName()+" Path :"+lists[i].getAbsoluteFile());
+                    l.add(lists[i].getName()+" "+lists[i].getAbsoluteFile());
                     //System.out.println("File name: "+lists[i].getName()+" and Path :"+lists[i].getPath());
                     size++;
                      
@@ -44,6 +44,7 @@ public class FileListingApp {
            
        for(int i=0;i<size;i++)
     System.out.println(l.get(i));
+
        
          
     }
@@ -52,9 +53,22 @@ public class FileListingApp {
     
     public static void main(String[] args) throws IOException {
       
-        File input = new File("C:\\Users\\Aditya\\Desktop\\TEST");
-        File output = new File("C:\\Users\\Aditya\\Documents\\NetBeansProjects\\FileListingApp\\OutputNew.txt");
+     
         
+        Scanner scan=new Scanner(System.in);
+        String user_input=scan.next();
+        
+        
+        FileReader fr=new FileReader(user_input);
+                BufferedReader br=new BufferedReader(fr); 
+                String line = br.readLine();
+                    
+                br.close();    
+                fr.close();    
+            
+        
+        File input = new File(line);
+        File output = new File("C:\\Users\\Aditya\\Documents\\NetBeansProjects\\FileListingApp\\Output1.txt");
         
         if(input.isFile()){
             System.out.println("File name: "+input.getName()+" and Path :"+input.getPath());
