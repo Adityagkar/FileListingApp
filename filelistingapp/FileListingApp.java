@@ -25,23 +25,25 @@ public class FileListingApp {
         String input_line="Contains source path";
         String output_line="Contains destination path";
         
-        
+        //for getting the source and destination path from given text file (whose path is supplied by user)
          try (FileReader fr = new FileReader(user_input); BufferedReader br = new BufferedReader(fr)) {
-             input_line = br.readLine();
+             input_line = br.readLine(); 
              output_line = br.readLine();
          }catch(FileNotFoundException e) {
-            System.out.println("File not Found !");
+            System.out.println("File not Found !"+e);}
+         catch(IOException e) {System.out.print("An IO Exception Ocurred ! Sorry"+e);}
      
-}
-         
-         
-            
+       try{
+    
         File input = new File(input_line);
         File output = new File(output_line);
-        
-       
+              
         Lister(input);
-        
+        }
+        catch(NullPointerException e)
+        {
+            System.out.print("NullPointerException Caught"+e);
+        }
          //Code to Transfer ArrayList to CSV will come here. Path for csv will be stored in output_line
          
          
@@ -99,8 +101,8 @@ public class FileListingApp {
     
   
          
-    }
+    }// end of function Lister()
     
    
-    
+ // end of class   
 }
