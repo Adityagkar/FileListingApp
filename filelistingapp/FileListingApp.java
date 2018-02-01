@@ -3,86 +3,103 @@ package filelistingapp;
 
 import java.io.*;
 import java.util.*;
-import javax.swing.JOptionPane;
 
 
 public class FileListingApp {
     
-     static int size=0;
+     static int size=0; // for storing the size of ArrayList
      static List l= new ArrayList();
             
+     
+    public static void main(String[] args) throws IOException {
+      
+     
+        
+        Scanner scan=new Scanner(System.in);
+        
+        System.out.println("###### File Listing Application @ Acadview Project ######");
+        System.out.println("Enter the Path for the Text File which contains the source and destination path :");
+        String user_input=scan.next();
+        
+        
+        String input_line="Contains source path";
+        String output_line="Contains destination path";
+        
+        
+         try (FileReader fr = new FileReader(user_input); BufferedReader br = new BufferedReader(fr)) {
+             input_line = br.readLine();
+             output_line = br.readLine();
+         }catch(FileNotFoundException e) {
+            System.out.println("This should never happen, I know this file exists");
+     
+}
+         
+         
+            
+        File input = new File(input_line);
+        File output = new File(output_line);
+        
+       
+        Lister(input);
+        
+         //Code to Transfer ArrayList to CSV will come here. Path for csv will be stored in output_line
+         
+         
+        
+      //end of main()  
+    }
     
-     static void  Lister(File input) throws IOException{
+    
+    // Recursive function Lister
+    /*
+    Lister() will take a single argument as a File handler which will be the source path where we have
+    to work and list all the files's path (even those in directories and subdirectories)
+    */
+      static void  Lister(File input) throws IOException{
          
    
-         
-       if(input.isDirectory()){ //if its a directory then generate all the files and folders list into an array 
+       //if input points to a directory then generate all the files and folders list into an array called lists[]   
+       if(input.isDirectory()){ 
            
-            File lists[]=input.listFiles();// say the array is lists
+            File lists[]=input.listFiles();
+        // say the array is lists
            
-            for(int i=0;i<lists.length;i++){
-                
-                if(lists[i].isFile()){
-                  
-                    l.add(lists[i].getName()+" "+lists[i].getAbsoluteFile());
+        //for each file/folder stored in array lists[]
+        for(int i=0;i<lists.length;i++){
+               
+                //check if it's a File or Directory
+                if(lists[i].isFile()){  // Also, a break condition for Recursion.
+                    //if it's a file write it's path to an ArrayList
+                    l.add(lists[i].getAbsoluteFile());
                     //System.out.println("File name: "+lists[i].getName()+" and Path :"+lists[i].getPath());
                     size++;
                      
                    
                 }
                 else{
+                    // if it's not a file then initialise File handler "input" with it's path  
+                    //Recall the function Lister() by passing the updated File Handler
                     File temp=new File(lists[i].getPath());
-                    Lister(temp);
+                    Lister(temp); //Recursive call
                 }
                    
                     
             }
             
         }
-       else
-           System.out.println("File name: "+input.getName()+" and Path :"+input.getPath());
+       else{
+           //if input points to a file add it to list and terminate Lister ()
+            l.add(lists[i].getAbsoluteFile());
+       }
            
-       for(int i=0;i<size;i++)
-    System.out.println(l.get(i));
-
-       
+    //This is for testing whether the file paths are been written in ArrayList or not
+            for(int i=0;i<size;i++)
+                 System.out.println(l.get(i));
+    
+  
          
     }
     
-
-    
-    public static void main(String[] args) throws IOException {
-      
-     
-        
-        Scanner scan=new Scanner(System.in);
-        String user_input=scan.next();
-        
-        
-        FileReader fr=new FileReader(user_input);
-                BufferedReader br=new BufferedReader(fr); 
-                String line = br.readLine();
-                    
-                br.close();    
-                fr.close();    
-            
-        
-        File input = new File(line);
-        File output = new File("C:\\Users\\Aditya\\Documents\\NetBeansProjects\\FileListingApp\\Output1.txt");
-        
-        if(input.isFile()){
-            System.out.println("File name: "+input.getName()+" and Path :"+input.getPath());
-        }
-        else{
-            Lister(input);
-        }
-        
-        
-        
-        
-    }
-    
-    //a function to list files
    
     
 }
