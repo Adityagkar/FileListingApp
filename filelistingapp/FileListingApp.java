@@ -57,11 +57,12 @@ public class FileListingApp {
     */
       static void  Lister(File input) throws IOException{
          
+          File lists[]=input.listFiles();
    
        //if input points to a directory then generate all the files and folders list into an array called lists[]   
        if(input.isDirectory()){ 
            
-            File lists[]=input.listFiles();
+            
         // say the array is lists
            
         //for each file/folder stored in array lists[]
@@ -89,7 +90,7 @@ public class FileListingApp {
         }
        else{
            //if input points to a file add it to list and terminate Lister ()
-            l.add(lists[i].getAbsoluteFile());
+            l.add(lists[0].getAbsoluteFile());
        }
            
     //This is for testing whether the file paths are been written in ArrayList or not
