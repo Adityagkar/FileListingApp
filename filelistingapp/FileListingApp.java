@@ -47,23 +47,39 @@ public class FileListingApp {
 
             }catch(FileNotFoundException e) {System.out.println("File not Found !"+e);}
              catch(IOException e) {System.out.print("An IO Exception Ocurred ! Sorry"+e);}
-
+             
+            
+            BufferedWriter out=null;
+            
             try{
 
              File input = new File(input_line);
-             File output = new File(output_line);
+             FileWriter output = new FileWriter(output_line);
+             out=new BufferedWriter(output);
 
              Lister(input);
              System.out.println(size+" Files were stored at "+output_line);
-             }
+             
+         //Code to Transfer ArrayList to CSV - Path for csv will be stored in output_line
+         
+                    String display=(size/2)+" were written successfully at "+output_line;
+                    JOptionPane.showMessageDialog(null,display);
+
+                    for(int i=0;i<size;i++){
+                          System.out.println(l.get(i));
+                        out.write(l.get(i).toString()); 
+                        out.write(",");
+                        if((i+1)%2==0)
+                            out.write("\n");
+                        out.flush();
+                    }
+                    }
              catch(NullPointerException e)
              {
                  System.out.print("NullPointerException Caught"+e);
              }
-         //Code to Transfer ArrayList to CSV will come here. Path for csv will be stored in output_line
+      
          
-         String display=size+" were written successfully at "+output_line;
-         JOptionPane.showMessageDialog(null,display);
          
         
       //end of main()  
@@ -91,6 +107,8 @@ public class FileListingApp {
                         //check if it's a File or Directory
                         if(lists[i].isFile()){  // Also, a break condition for Recursion.
                             //if it's a file write it's path to an ArrayList
+                            l.add(lists[i].getName());
+                            size++;
                             l.add(lists[i].getAbsoluteFile());
                             //System.out.println("File name: "+lists[i].getName()+" and Path :"+lists[i].getPath());
                             size++;
@@ -114,8 +132,8 @@ public class FileListingApp {
        }
            
             //This is for testing whether the file paths are been written in ArrayList or not
-            for(int i=0;i<size;i++)
-                 System.out.println(l.get(i));
+            // for(int i=0;i<size;i++)
+            //    System.out.println(l.get(i));
     
   
          
