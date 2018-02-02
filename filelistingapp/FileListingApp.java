@@ -1,8 +1,17 @@
+/*
+File Listing Application
+The Application displays the lists of all available files, even those which are in directories and subdirectories
+on the user's screen.
 
+
+Developed by : Aditya Ghodgaonkar
+For : Acadview 
+*/
 package filelistingapp;
 
 import java.io.*;
 import java.util.*;
+
 
 
 public class FileListingApp {
@@ -18,6 +27,7 @@ public class FileListingApp {
         Scanner scan=new Scanner(System.in);
         
         System.out.println("###### File Listing Application @ Acadview Project ######");
+        System.out.println(" ");
         System.out.println("Enter the Path for the Text File which contains the source and destination path :");
         String user_input=scan.next();
         
@@ -26,24 +36,26 @@ public class FileListingApp {
         String output_line="Contains destination path";
         
         //for getting the source and destination path from given text file (whose path is supplied by user)
-         try (FileReader fr = new FileReader(user_input); BufferedReader br = new BufferedReader(fr)) {
-             input_line = br.readLine(); 
-             output_line = br.readLine();
-         }catch(FileNotFoundException e) {
-            System.out.println("File not Found !"+e);}
-         catch(IOException e) {System.out.print("An IO Exception Ocurred ! Sorry"+e);}
-     
-       try{
-    
-        File input = new File(input_line);
-        File output = new File(output_line);
-              
-        Lister(input);
-        }
-        catch(NullPointerException e)
-        {
-            System.out.print("NullPointerException Caught"+e);
-        }
+            try (FileReader fr = new FileReader(user_input); BufferedReader br = new BufferedReader(fr)) {
+
+                input_line = br.readLine(); //reads the first line which is Target path(for input)
+                output_line = br.readLine(); // reads the second line which is Destination path (for output)
+
+            }catch(FileNotFoundException e) {System.out.println("File not Found !"+e);}
+             catch(IOException e) {System.out.print("An IO Exception Ocurred ! Sorry"+e);}
+
+            try{
+
+             File input = new File(input_line);
+             File output = new File(output_line);
+
+             Lister(input);
+             System.out.println(size+" Files were stored at "+output_line);
+             }
+             catch(NullPointerException e)
+             {
+                 System.out.print("NullPointerException Caught"+e);
+             }
          //Code to Transfer ArrayList to CSV will come here. Path for csv will be stored in output_line
          
          
