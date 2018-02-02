@@ -11,6 +11,7 @@ package filelistingapp;
 
 import java.io.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 
 
@@ -23,15 +24,18 @@ public class FileListingApp {
     public static void main(String[] args) throws IOException {
       
      
-        
+        /*
         Scanner scan=new Scanner(System.in);
         
         System.out.println("###### File Listing Application @ Acadview Project ######");
         System.out.println(" ");
         System.out.println("Enter the Path for the Text File which contains the source and destination path :");
         String user_input=scan.next();
+        */
         
-        
+        String user_input=JOptionPane.showInputDialog("Enter the Path for the Text File which contains the source and destination path :");
+            
+  
         String input_line="Contains source path";
         String output_line="Contains destination path";
         
@@ -58,6 +62,8 @@ public class FileListingApp {
              }
          //Code to Transfer ArrayList to CSV will come here. Path for csv will be stored in output_line
          
+         String display=size+" were written successfully at "+output_line;
+         JOptionPane.showMessageDialog(null,display);
          
         
       //end of main()  
