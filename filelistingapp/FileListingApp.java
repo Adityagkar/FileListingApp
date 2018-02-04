@@ -58,7 +58,7 @@ public class FileListingApp {
              out=new BufferedWriter(output);
 
              Lister(input);
-             System.out.println(size+" Files were stored at "+output_line);
+            // System.out.println(size+" Files were stored at "+output_line);
              
          //Code to Transfer ArrayList to CSV - Path for csv will be stored in output_line
          
