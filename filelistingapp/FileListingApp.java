@@ -13,8 +13,6 @@ import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-
-
 public class FileListingApp {
     
      static int size=0; // for storing the size of ArrayList
@@ -23,7 +21,6 @@ public class FileListingApp {
      
     public static void main(String[] args) throws IOException {
       
-     
         /*
         Scanner scan=new Scanner(System.in);
         
@@ -77,11 +74,8 @@ public class FileListingApp {
              catch(NullPointerException e)
              {
                  System.out.print("NullPointerException Caught"+e);
-             }
+             } 
       
-         
-         
-        
       //end of main()  
     }
     
@@ -122,7 +116,6 @@ public class FileListingApp {
                             Lister(temp); //Recursive call
                         }
 
-
                     }
             
         }
@@ -135,11 +128,8 @@ public class FileListingApp {
             // for(int i=0;i<size;i++)
             //    System.out.println(l.get(i));
     
-  
          
     }// end of function Lister()
-    
-    
-   
+ 
  // end of class   
 }
