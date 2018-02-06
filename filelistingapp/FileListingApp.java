@@ -13,8 +13,6 @@ import java.io.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-
-
 public class FileListingApp {
     
      static int size=0; // for storing the size of ArrayList
@@ -55,6 +53,7 @@ public class FileListingApp {
                  
              File input = new File(input_line);
              FileWriter output = new FileWriter(output_line);
+<<<<<<< HEAD
              BufferedWriter out=new BufferedWriter(output);
 
                 Lister(input);//Call to Lister method
@@ -63,6 +62,32 @@ public class FileListingApp {
                 String display=(size/2)+" were written successfully at "+output_line;
                 JOptionPane.showMessageDialog(null,display);
         
+=======
+             out=new BufferedWriter(output);
+
+             Lister(input);
+            // System.out.println(size+" Files were stored at "+output_line);
+             
+         //Code to Transfer ArrayList to CSV - Path for csv will be stored in output_line
+         
+                    String display=(size/2)+" were written successfully at "+output_line;
+                    JOptionPane.showMessageDialog(null,display);
+
+                    for(int i=0;i<size;i++){
+                          System.out.println(l.get(i));
+                        out.write(l.get(i).toString()); 
+                        out.write(",");
+                        if((i+1)%2==0)
+                            out.write("\n");
+                        out.flush();
+                    }
+                    }
+             catch(NullPointerException e)
+             {
+                 System.out.print("NullPointerException Caught"+e);
+             } 
+      
+>>>>>>> 77750cba157b371020d32f095a3f2d918949d575
       //end of main()  
     }
     
@@ -106,6 +131,7 @@ public class FileListingApp {
                  l.add(lists[0].getAbsoluteFile());
             }
 
+<<<<<<< HEAD
 
     }// end of function Lister()
     
@@ -126,5 +152,22 @@ public class FileListingApp {
                     }
     }//end of CSV Writer function
    
+=======
+                    }
+            
+        }
+       else{
+           //if input points to a file add it to list and terminate Lister ()
+            l.add(lists[0].getAbsoluteFile());
+       }
+           
+            //This is for testing whether the file paths are been written in ArrayList or not
+            // for(int i=0;i<size;i++)
+            //    System.out.println(l.get(i));
+    
+         
+    }// end of function Lister()
+ 
+>>>>>>> 77750cba157b371020d32f095a3f2d918949d575
  // end of class   
 }
